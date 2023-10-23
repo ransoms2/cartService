@@ -8,7 +8,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'products.sqlite')
 db = SQLAlchemy(app)
 
-
+url = "https://product-service-l24r.onrender.com"
 
 class Cart(db.Model):
     id          = db.Column(db.Integer, primary_key = True)
@@ -17,7 +17,7 @@ class Cart(db.Model):
     quantity    = db.Column(db.Integer)
 
 def get_product(product_id):
-    response = requests.get(f'http://127.0.0.1:5000/products/{product_id}')
+    response = requests.get(f'{url}/products/{product_id}')
     data = response.json()
     return data
 
